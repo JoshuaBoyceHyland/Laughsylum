@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-enum States { 
+enum EnemyStates { 
 stalking = 0,
 chasing = 1, 
 attacking = 2
@@ -21,11 +21,11 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float visionWidth;
     [SerializeField] float visionDepth;    
 
-    private States state; 
+    private EnemyStates state; 
     // Start is called before the first frame update
     void Start()
     {
-        state = States.stalking;    
+        state = EnemyStates.stalking;    
         agent.enabled = true;   
         agent.destination = getRandomWorldPoint();
     }
@@ -76,7 +76,7 @@ public class EnemyController : MonoBehaviour
     {
         if(CanSeePlayer())
         {
-            state = States.chasing;
+            state = EnemyStates.chasing;
             return; 
         }
     }

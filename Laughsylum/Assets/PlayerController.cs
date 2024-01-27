@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 
 
-enum States { Idle = 0 ,Walking =1, Death =2}   
+enum PlayersStates { Idle = 0 ,Walking =1, Death =2}   
 public class PlayerController : MonoBehaviour
 {
 
@@ -20,12 +20,12 @@ public class PlayerController : MonoBehaviour
     
 
     [SerializeField] Animator animator;
-    States state;
+    PlayersStates state;
 
     // Start is called before the first frame update
     void Start()
     {
-        state = States.Idle;
+        state = PlayersStates.Idle;
         animator.SetInteger("State", (int)state); 
         Cursor.lockState = CursorLockMode.Locked;
         rb = gameObject.GetComponent<Rigidbody>();
@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
     {
         if (rb.velocity == Vector3.zero)
         {
-            state = States.Idle;
+            state = PlayersStates.Idle;
 
             Debug.Log("IDle");
             footsteps.enabled = false;
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            state = States.Walking;
+            state = PlayersStates.Walking;
             footsteps.enabled = true;
         }
         Vector2 axis = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal")).normalized * walkSpeed;
