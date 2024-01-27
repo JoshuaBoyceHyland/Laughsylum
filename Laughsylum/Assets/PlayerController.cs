@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public bool grounded;
     
     public float walkSpeed = 5f, sensitivity = 2f;
+
+    public AudioSource footsteps;
     
 
     [SerializeField] Animator animator;
@@ -49,6 +51,7 @@ public class PlayerController : MonoBehaviour
         x = Mathf.Clamp(x, -90, 90);
         y += Input.GetAxisRaw("Mouse X") * sensitivity;
         Camera.main.transform.localRotation = Quaternion.Euler(x, y, 0);
+       
     }
 
     void FixedUpdate()
@@ -62,10 +65,12 @@ public class PlayerController : MonoBehaviour
         {
             state = States.Idle;
             Debug.Log("IDle");
+            footsteps.enabled = false;
         }
         else
         {
             state = States.Walking;
+            footsteps.enabled = true;
         }
         Vector2 axis = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal")).normalized * walkSpeed;
         Vector3 forward = new Vector3(-Camera.main.transform.right.z, 0, Camera.main.transform.right.x);
