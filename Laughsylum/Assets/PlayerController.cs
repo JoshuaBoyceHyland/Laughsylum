@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         if (rb.velocity == Vector3.zero)
         {
             state = States.Idle;
-            Debug.Log("IDle");
+
         }
         else
         {
