@@ -7,14 +7,12 @@ using UnityEngine.SceneManagement;
 public class PickUpText : MonoBehaviour
 {
 
-
     public bool GuiOn;
-
 
     private void OnTriggerEnter(Collider other)
     {
 
-        Debug.Log("PickUp");
+        Debug.Log("inside Pickup Collision box");
         GuiOn = true;
     }
 
@@ -23,7 +21,7 @@ public class PickUpText : MonoBehaviour
         GuiOn = false;
     }
 
-    public string Text = "[PickUp]";
+    public string Text = "[MB1 to PickUp]";
 
     public Rect BoxSize = new Rect(0, 0, Screen.width, Screen.height);
 
