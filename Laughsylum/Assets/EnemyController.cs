@@ -47,7 +47,7 @@ public class EnemyController : MonoBehaviour
      Vector3 getRandomWorldPoint()
     {
         
-        Vector3 RandWorldPoint = new Vector3(Random.Range( -15, 15), transform.position.y, Random.Range(-15, 15));
+        Vector3 RandWorldPoint = new Vector3(Random.Range( -38, 31), transform.position.y, Random.Range(-30, 9));
 
         NavMeshHit hit; 
 
