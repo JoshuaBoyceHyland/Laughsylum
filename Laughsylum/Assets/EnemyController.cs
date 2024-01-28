@@ -1,8 +1,10 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+
 
 
 enum EnemyStates { 
@@ -19,7 +21,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField] Transform EyeLinePos;
     [SerializeField] Transform worldSize; 
     [SerializeField] float visionWidth;
-    [SerializeField] float visionDepth;    
+    [SerializeField] float visionDepth;
+
+    GameObject righthand;
 
     private EnemyStates state; 
     // Start is called before the first frame update
@@ -28,6 +32,18 @@ public class EnemyController : MonoBehaviour
         state = EnemyStates.stalking;    
         agent.enabled = true;   
         agent.destination = getRandomWorldPoint();
+
+        AttackRange attackRange = GetComponentInChildren<AttackRange>();
+
+        attackRange.playerAttackAble += playerReadyToBeAttacked;
+
+        righthand = GameObject.Find("mixamorig:RightHand");
+
+        righthand.GetComponent<HandHitBox>().playerHit += playerDamage;
+
+
+
+        
     }
 
      Vector3 getRandomWorldPoint()
@@ -38,54 +54,79 @@ public class EnemyController : MonoBehaviour
         NavMeshHit hit; 
 
         NavMesh.SamplePosition(RandWorldPoint, out hit, Mathf.Infinity, NavMesh.AllAreas);
-        Debug.Log(hit.position);
+      
         return hit.position;
     }
     // Update is called once per frame
     void Update()
     {
 
-        if(agent.velocity == Vector3.zero)
-        {
-            agent.destination = getRandomWorldPoint();
-        }
-        //agent.destination = Player.position;
+        
         
         //Search();
 
         animator.SetInteger("State", (int)state);
-        //switch (state)
-        //{
-        //    case States.stalking:   
-        //        break; 
-            
-        //    case States.chasing:
-        //        break; 
+        switch (state)
+        {
+            case EnemyStates.stalking:
+                if (agent.velocity == Vector3.zero)
+                {
+                    agent.destination = getRandomWorldPoint();
+                }
 
-        //    case States.attacking:
-        //        break;
-        //    default:
-        //        break;
+                if (CanSeePlayer())
+                {
+                    state = EnemyStates.chasing;
+                    agent.destination = Player.position;
+                    agent.speed = 3.5f; 
+                }
 
-        //}
+                break;
+
+            case EnemyStates.chasing:
+             
+                agent.destination = Player.position;
+                if (!CanSeePlayer())
+                {
+                    StartCoroutine(LosePlayer());
+                }
+                break;
+
+            case EnemyStates.attacking:
+                FacePlayer();
+                break;
+            default:
+                break;
+
+        }
 
     }
 
 
-    private void Search()
+    private void playerDamage()
     {
-        if(CanSeePlayer())
+        agent.enabled = true;
+        Debug.Log("Playr hit");
+        righthand.active = false;
+       
+    }
+    private IEnumerator LosePlayer()
+    {
+
+
+        yield return new WaitForSeconds(1.5f);
+
+        if (!CanSeePlayer())
         {
-            state = EnemyStates.chasing;
-            return; 
+            state = EnemyStates.stalking;
+            agent.speed = 2; 
         }
     }
-
     private bool CanSeePlayer()
     {
         Collider[] hitColliders = Physics.OverlapBox(EyeLinePos.position, new Vector3((visionWidth / 2), (10 / 2), (visionDepth / 2)), transform.rotation, PlayerLayerMask);
         int i = 0;
-        Debug.Log(hitColliders.Length);
+        
         while (i < hitColliders.Length)
         {
 
@@ -101,7 +142,29 @@ public class EnemyController : MonoBehaviour
         return false; 
     }
 
+    private void playerReadyToBeAttacked()
+    {
+        state = EnemyStates.attacking;
+        agent.enabled = false; 
+    }
 
+
+    private void FacePlayer()
+    {
+        Vector3 directionToTarget = Player.position - transform.position;
+
+        directionToTarget.y = 0; 
+
+        transform.rotation = Quaternion.LookRotation(directionToTarget);
+    }
+
+    public void AttackFinished()
+    {
+        state = EnemyStates.chasing;
+        agent.speed = 3.5f;
+        agent.enabled = true;
+        righthand.active = true;
+    }
     //private void OnDrawGizmos()
     //{
     //    Gizmos.color = Color.green;
