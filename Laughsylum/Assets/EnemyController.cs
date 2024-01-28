@@ -104,6 +104,8 @@ public class EnemyController : MonoBehaviour
     private void playerDamage()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
 
     }
     private IEnumerator LosePlayer()

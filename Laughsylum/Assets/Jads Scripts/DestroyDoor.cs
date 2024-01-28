@@ -28,9 +28,11 @@ public class DestroyDoor : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 canDooropen = true;
-                Destroy(gameObject);
+         
                 playerhasWon = true;
                 Debug.Log("Door can open");
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
             }
 
