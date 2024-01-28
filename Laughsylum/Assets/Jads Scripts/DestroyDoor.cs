@@ -34,20 +34,28 @@ public class DestroyDoor : MonoBehaviour
 
         }
     }
-    private void OnTriggerEnter(Collider other)
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
 
 
 
-                playerNearDoor = true; 
+            playerNearDoor = true;
         }
     }
 
-    private void OnTriggerExit(Collider other)
+
+    private void OnCollisionExit(Collision collision)
     {
-        playerNearDoor = false;
+        if (collision.gameObject.tag == "Player")
+        {
+            playerNearDoor = false;
+        }
     }
+    
+
+   
 
 }

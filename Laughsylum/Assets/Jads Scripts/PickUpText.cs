@@ -9,14 +9,14 @@ public class PickUpText : MonoBehaviour
 
     public bool GuiOn;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
 
         Debug.Log("inside Pickup Collision box");
         GuiOn = true;
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionExit(Collision collision)
     {
         GuiOn = false;
     }
