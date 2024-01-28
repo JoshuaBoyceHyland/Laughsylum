@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         {
             state = PlayersStates.Idle;
 
-            Debug.Log("IDle");
+         
             footsteps.enabled = false;
 
         }
