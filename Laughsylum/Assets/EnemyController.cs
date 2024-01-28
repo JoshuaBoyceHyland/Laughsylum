@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-
-
-
+using UnityEngine.SceneManagement;
 enum EnemyStates { 
 stalking = 0,
 chasing = 1, 
@@ -105,10 +103,8 @@ public class EnemyController : MonoBehaviour
 
     private void playerDamage()
     {
-        agent.enabled = true;
-        Debug.Log("Playr hit");
-        righthand.active = false;
-       
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
     }
     private IEnumerator LosePlayer()
     {
