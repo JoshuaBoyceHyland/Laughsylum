@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 86ed92a1f09eede4ba0749e3dcc18728,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 86ed92a1f09eede4ba0749e3dcc18728,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 86ed92a1f09eede4ba0749e3dcc18728,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 86ed92a1f09eede4ba0749e3dcc18728,
         type: 3}
@@ -76,6 +76,11 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 86ed92a1f09eede4ba0749e3dcc18728,
         type: 3}
       propertyPath: m_Name
+      value: Battery
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 86ed92a1f09eede4ba0749e3dcc18728,
+        type: 3}
+      propertyPath: m_TagString
       value: Battery
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -135,7 +140,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 40, y: 40, z: 40}
+  m_Size: {x: 30, y: 30, z: 30}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8120180417470733449
 MonoBehaviour:

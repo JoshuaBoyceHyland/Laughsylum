@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public float walkSpeed = 5f, sensitivity = 2f;
 
     public AudioSource footsteps;
-    
+    public bool hasKey = false;
 
     [SerializeField] Animator animator;
     PlayersStates state;
