@@ -8821,6 +8821,11 @@ PrefabInstance:
       objectReference: {fileID: 340288730}
     - target: {fileID: 686400767073129252, guid: a508e7eb79af8574e8196a4beec1ce47,
         type: 3}
+      propertyPath: righthand
+      value: 
+      objectReference: {fileID: 1921527322}
+    - target: {fileID: 686400767073129252, guid: a508e7eb79af8574e8196a4beec1ce47,
+        type: 3}
       propertyPath: worldSize
       value: 
       objectReference: {fileID: 276945547}
@@ -24322,6 +24327,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912901526}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1921527322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4258232549226641564, guid: a508e7eb79af8574e8196a4beec1ce47,
+    type: 3}
+  m_PrefabInstance: {fileID: 623751446}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1929976257
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float visionWidth;
     [SerializeField] float visionDepth;
 
-    GameObject righthand;
+    [SerializeField]  GameObject righthand;
 
     private EnemyStates state; 
     // Start is called before the first frame update
@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
 
         attackRange.playerAttackAble += playerReadyToBeAttacked;
 
-        righthand = GameObject.Find("mixamorig:RightHand");
+  
 
         righthand.GetComponent<HandHitBox>().playerHit += playerDamage;
 
