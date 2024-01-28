@@ -8,7 +8,7 @@ public class PickUp : MonoBehaviour
 {
     bool canBePickedUp = false;
     bool isPickedUp = false;
-
+    
     public GameObject pickupText;
 
     private void Update()
@@ -21,6 +21,12 @@ public class PickUp : MonoBehaviour
                 Debug.Log("Picked up");
                 isPickedUp = true;
                 Destroy(gameObject);
+
+                if (gameObject.tag == "Key")
+                {
+                    GameObject.Find("Player").GetComponent<PlayerController>().hasKey = true;
+                    Debug.Log("Has a key");
+                }
             }
             else
             {
